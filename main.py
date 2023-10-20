@@ -23,7 +23,7 @@ users_db = []
 ## callbacks
 @app.after_request
 def after_request_callback(response):
-    # response.headers["Content-Encoding"] = "gzip"
+    response.headers["Content-Encoding"] = "gzip"
     response.headers["Content-Type"] = "application/json"
     response.headers["X-Frame-Options"] = "deny"
     response.headers["Accept"] = "application/json"
