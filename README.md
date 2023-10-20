@@ -39,8 +39,8 @@ Treblle is a lightweight SDK that helps Engineering and Product teams build, shi
 - [API Lifecycle Collaboration](https://www.treblle.com/features/api-lifecycle)
 - [Native Treblle Apps](https://www.treblle.com/features/native-apps)
 
-
 ## How Treblle Works
+
 Once you’ve integrated a Treblle SDK in your codebase, this SDK will send requests and response data to your Treblle Dashboard.
 
 In your Treblle Dashboard you get to see real-time requests to your API, auto-generated API docs, API analytics like how fast the response was for an endpoint, the load size of the response, etc.
@@ -52,6 +52,7 @@ Treblle also uses the requests sent to your Dashboard to calculate your API scor
 ## Security
 
 ### Masking fields
+
 Masking fields ensure certain sensitive data are removed before being sent to Treblle.
 
 To make sure masking is done before any data leaves your server [we built it into all our SDKs](https://docs.treblle.com/en/security/masked-fields#fields-masked-by-default).
@@ -59,7 +60,6 @@ To make sure masking is done before any data leaves your server [we built it int
 This means data masking is super fast and happens on a programming level before the API request is sent to Treblle. You can [customize](https://docs.treblle.com/en/security/masked-fields#custom-masked-fields) exactly which fields are masked when you’re integrating the SDK.
 
 > Visit the [Masked fields](https://docs.treblle.com/en/security/masked-fields) section of the [docs](https://docs.sailscasts.com) for the complete documentation.
-
 
 ## Get Started
 
@@ -70,6 +70,66 @@ This means data masking is super fast and happens on a programming level before 
 ### Install the SDK
 
 <!-- Installation instruction for the platform goes here -->
+
+Install the necessary packages
+
+`pip install -r requirements.txt`
+
+### Setup
+
+A `treblle.json` file has to be present in the root directory of the project. This file should contain a dictionary like the example below:
+
+```
+{
+    "TREBLLE_API_KEY": "API key goes here",
+    "TREBLLE_PROJECT_ID": "Project ID goes here",
+    "TREBLLE_HIDDEN_KEYS": ["hidden", "keys", "goes", "here"]
+}
+```
+
+> Don't forget to add `treblle.json` to .gitignore file
+
+Once that is out of the way, the next step is to import the Treblle class and pass the `app` instance:
+
+```py
+from treblle-flask import Treblle
+...
+Treblle(app)
+...
+```
+
+That is all it takes to set up the Treblle-flask SDK.
+
+### Run the server
+
+Two ways to run the server:
+
+1. `flask --app main run`
+
+To run in debug mode:
+
+2. `flask --app main --debug run`
+
+### Test files
+
+There are also test files available, to run tests:
+
+1. `cd treblle_flask`
+2. `cd test`
+3. run: `pytest` or `pytest -v` (to view test cases)
+
+> Tip: Ensure treblle.json is present in project directory and test directory (just for testing purpose, don't forget to add to .gitignore) ;-)
+
+### Available Endpoints
+
+- Create user --> `http://127.0.0.1:5000/signup`
+- Login --> `http://127.0.0.1:5000/signin`
+- All articles --> `http://127.0.0.1:5000/` , { Bearer 'token' }
+- Create article --> `http://127.0.0.1:5000/` , { Bearer 'token' }
+- Fetch article --> `http://127.0.0.1:5000/:uuid` , { Bearer 'token' }
+- Update article --> `http://127.0.0.1:5000/:uuid` , { Bearer 'token' }
+- Delete article --> `http://127.0.0.1:5000/:uuid` , { Bearer 'token' }
+
 > See the [docs]() for this SDK to learn more.
 
 ## Available SDKs
@@ -99,9 +159,9 @@ Besides the SDKs, we also provide helpers and configuration used for SDK
 development. If you're thinking about contributing to or creating a SDK, have a look at the resources
 below:
 
-- [`treblle-utils`](https://github.com/Treblle/treblle-utils):  A set of helpers and
+- [`treblle-utils`](https://github.com/Treblle/treblle-utils): A set of helpers and
   utility functions useful for the JavaScript SDKs.
-- [`php-utils`](https://github.com/Treblle/php-utils):   A set of helpers and
+- [`php-utils`](https://github.com/Treblle/php-utils): A set of helpers and
   utility functions useful for the PHP SDKs.
 
 ## Community 💙
@@ -127,6 +187,7 @@ Here are some ways of contributing to making Treblle better:
 - Send a pull request to any of our [open source repositories](https://github.com/Treblle) on Github. Check the contribution guide on the repo you want to contribute to for more details about how to contribute. We're looking forward to your contribution!
 
 ### Contributors
+
 <!-- Replace link with the link of the SDK contributors-->
 <a href="https://github.com/Treblle/treblle-sails/graphs/contributors">
   <p align="center">
