@@ -102,11 +102,7 @@ class Treblle(object):
             self.response_body["headers"] = mask_json_values(
                 headers, self.hidden_json_keys
             )
-            body = (
-                response.get_json()
-                if response.get_json()
-                else response.get_data(as_text=True)
-            )
+            body = json.loads(json.dumps(response.get_data(as_text=True)))
             self.response_body["size"] = len(body)
             self.response_body["body"] = (
                 mask_json_values(body, self.hidden_json_keys)

@@ -12,10 +12,10 @@ Return a completed Treblle payload, that can be modified before being sent.
 """
 
 
-def check_items(items: list, error: list, name: str):
-    for item in items:
-        for k, v in item.values():
-            if len(v) < 1:
+def check_items(values: list, error: list, name: str):
+    for item in values:
+        for k, v in item.items():
+            if len(str(v)) < 1:
                 error.append(f"Incomplete {name} data")
     return error
 
