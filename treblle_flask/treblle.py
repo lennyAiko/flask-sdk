@@ -81,11 +81,12 @@ class Treblle(object):
                 else mask_json_values(request.get_json(), self.hidden_json_keys)
             )
 
-            self.request_body["body"] = (
+            body = (
                 mask_json_values(body, self.hidden_json_keys)
                 if isinstance(body, dict)
                 else mask_list_values(body, self.hidden_json_keys)
             )
+            self.request_body["body"] = json.loads(json.dumps(body))
             self.request_body["headers"] = mask_json_values(
                 json.loads(json.dumps({**request.headers})), self.hidden_json_keys
             )
@@ -104,11 +105,12 @@ class Treblle(object):
             )
             body = json.loads(json.dumps(response.get_data(as_text=True)))
             self.response_body["size"] = len(body)
-            self.response_body["body"] = (
+            body = (
                 mask_json_values(body, self.hidden_json_keys)
                 if isinstance(body, dict)
                 else mask_list_values(body, self.hidden_json_keys)
             )
+            self.response_body["body"] = body
             end_request_time = time()
 
             self.response_body["load_time"] = end_request_time - self.start_request_time

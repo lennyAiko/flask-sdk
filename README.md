@@ -128,7 +128,7 @@ There are also test files available, to run tests:
 - Create article --> `http://127.0.0.1:5000/` , { Bearer 'token' }
 - Fetch article --> `http://127.0.0.1:5000/:uuid` , { Bearer 'token' }
 - Update article --> `http://127.0.0.1:5000/:uuid` , { Bearer 'token' }
-- Delete article --> `http://127.0.0.1:5000/:uuid` , { Bearer 'token' }
+- Delete article --> `http://127.0.0.1:5000/:uuid` , { Bearer 'token' }, pass {} as body.
 
 > See the [docs]() for this SDK to learn more.
 
